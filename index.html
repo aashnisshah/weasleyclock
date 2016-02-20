@@ -76,16 +76,51 @@
 
 			function zoomToLocation(location) {
 				var pt = new Point(location.coords.longitude, location.coords.latitude);
+				var newlocation = 'unknown';
 				console.log(pt);
+				console.log(pt.spatialReference);
 				map.centerAndZoom(pt, 12);
-				console.log('now attempting to get the buffer region thing');
+				// console.log('now attempting to get the buffer region thing');
 				// geodesicBuffer(geometry, distance, unit, unionResults?)
 
 
 				// var featureLayer = map.getLayer(map.graphicsLayerIds[0]);
 				// debugger
-		  //       var geometries = graphicsUtils.getGeometries(featureLayer.graphics);
-		  //       debugger;
+		  		// var geometries = graphicsUtils.getGeometries(featureLayer.graphics);
+		  		// debugger;
+
+		  		// top left to bottom right
+		  		var locations = [	// {x: x-val, y: y-val}
+		  			{
+		  				topx: -81,
+		  				topy: 44.2929973,
+		  				bottomx: -84.7149281,
+		  				bottomy: 41.2927428,
+		  				type: 'Work',
+		  				loc: 'Chem Eng'
+		  			},
+		  			{
+		  				topx: -83.7149281,
+		  				topy: 42.2927428,
+		  				bottomx: -83.7144473,
+		  				bottomy: 42.3081689,
+		  				type: 'Work',
+		  				loc: 'Library'
+		  			}
+		  		];
+
+		  		angular.forEach(locations, function (place) {
+		  			debugger
+		  			if(	parseFloat(place.topx) >= parseFloat(pt.x) && parseFloat(pt.x) >= parseFloat(place.bottomx) &&
+		  				parseFloat(place.topy) >= parseFloat(pt.y) && parseFloat(pt.y) >= parseFloat(place.bottomy) ) {
+		  				console.log('in ' + place.loc);
+		  				newlocation = place.type;
+		  			} else {
+		  				console.log('nope');
+		  			}
+		  		})
+
+		  		// send place.type to the firebase server to update
 			}
 
 		});
