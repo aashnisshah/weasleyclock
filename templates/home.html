@@ -1,15 +1,23 @@
 <h1>{{ home.message }}</h1>
 
-{{ home.firebase[0] }}
-
-<div ng-repeat="dude in home.firebase">
-	{{ dude.id }}
-	<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
-	<div ng-if="dude.location=='Home'">
-		Dude is lazy
+<!-- {{ home.firebase[0] }}
+ -->
+<div class="">
+	<h2>People at Home</h2>
+	<div ng-repeat="dude in home.people[0]" class="">
+		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
 	</div>
-	<div ng-if="dude.location!='Home'">
-		Dude is cool
+
+
+	<h2>People at Work</h2>
+	<div ng-repeat="dude in home.people[1]" class="">
+		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
+	</div>
+
+
+	<h2>People in Mortal Peril</h2>
+	<div ng-repeat="dude in home.people[2]" class="">
+		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
 	</div>
 </div>
 
