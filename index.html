@@ -19,8 +19,77 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 
-	<!-- CanvasJS -->
-	<script src="http://code.createjs.com/createjs-2014.12.12.min.js"></script>
+	<!-- ArcGIS -->
+	<link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
+	<script src="https://js.arcgis.com/3.15/"></script>
+
+	<script type="text/javascript">
+		var map;
+		var currLocation;
+		require([
+			"esri/map",
+			"esri/geometry/Point",
+		    "dojo/ready", 
+		    "esri/Color",
+		    "dojo/_base/array",
+		    "esri/arcgis/utils",
+		    "esri/config",
+		    "esri/graphicsUtils",
+		    "esri/symbols/SimpleFillSymbol",
+		    "esri/graphic", 
+		    "esri/geometry/geometryEngine",
+		    "dojo/domReady!"
+		],
+		function(
+			Map,
+			Point,
+			ready, 
+		    Color,
+		    array,
+		    arcgisUtils,
+		    config,
+		    graphicsUtils,
+		    SimpleFillSymbol,
+		    Graphic,
+		    geometryEngine
+			) {
+			map = new Map("mapDiv", {
+				center: [-56.049, 38.485],
+				zoom: 3,
+				basemap: "streets"
+			});
+			map.on("load", initFunc);
+
+			// var geometries = []
+
+			function initFunc(map) {
+				if(navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(zoomToLocation, locationError);
+				} else {
+					console.log('you fucked up');
+				}
+			}
+
+			function locationError(error) {
+				console.log(error);
+			}
+
+			function zoomToLocation(location) {
+				var pt = new Point(location.coords.longitude, location.coords.latitude);
+				console.log(pt);
+				map.centerAndZoom(pt, 12);
+				console.log('now attempting to get the buffer region thing');
+				// geodesicBuffer(geometry, distance, unit, unionResults?)
+
+
+				// var featureLayer = map.getLayer(map.graphicsLayerIds[0]);
+				// debugger
+		  //       var geometries = graphicsUtils.getGeometries(featureLayer.graphics);
+		  //       debugger;
+			}
+
+		});
+	</script>
 
 </head>
 <body>
