@@ -4,6 +4,7 @@
 
 <div ng-repeat="dude in home.firebase">
 	{{ dude.id }}
+	<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
 	<div ng-if="dude.location=='Home'">
 		Dude is lazy
 	</div>
@@ -11,3 +12,5 @@
 		Dude is cool
 	</div>
 </div>
+
+

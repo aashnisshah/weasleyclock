@@ -25,12 +25,14 @@ weasleyClock.controller('HomeCtrl', [
 		{
 			id: 0,
 			name: 'Jon',
-			location: 'Work'
+			location: 'Work',
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
 		},
 		{
 			id: 1,
 			name: 'Mark',
-			location: 'Home'
+			location: 'Home',
+      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
 		}
 	];
   }
