@@ -1,24 +1,24 @@
-<h1>{{ home.message }}</h1>
-
-<!-- {{ home.firebase[0] }}
- -->
-<div class="">
-	<h2>People at Home</h2>
-	<div ng-repeat="dude in home.people[0]" class="">
-		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
+<div class="row">
+	<div class="col-md-4">
+		<h2>Home</h2>
+		<span ng-repeat="dude in home.people[0]" class="home">
+			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		</span>
 	</div>
-
-
-	<h2>People at Work</h2>
-	<div ng-repeat="dude in home.people[1]" class="">
-		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
+	<div class="col-md-4">
+		<h2>Work</h2>
+		<span ng-repeat="dude in home.people[1]" class="work">
+			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		</span>
 	</div>
-
-
-	<h2>People in Mortal Peril</h2>
-	<div ng-repeat="dude in home.people[2]" class="">
-		<img ng-src="{{ dude.image }}" alt="..." class="img-circle" height="140px"> 
+	<div class="col-md-4">
+		<h2>Mortal Peril</h2>
+		<span ng-repeat="dude in home.people[2]" class="peril">
+			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		</span>
 	</div>
 </div>
+
+
 
 
