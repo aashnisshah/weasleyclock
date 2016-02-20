@@ -1,25 +1,24 @@
-<spam pan ng-repeat="dude in people[0]" class="home">
+{{ myInfo }}
 
-
-
+<button ng-click="updateStatus()">Update</button>
 
 <div class="row">
 	<div class="col-md-4">
 		<h2>Home</h2>
-		<span ng-repeat="dude in people[0]" class="home">
-			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		<span ng-repeat="dude in firebase" class="home">
+			<img ng-if="dude.location=='Home'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
 		</span>
 	</div>
 	<div class="col-md-4">
 		<h2>Work</h2>
-		<span ng-repeat="dude in people[1]" class="work">
-			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		<span ng-repeat="dude in firebase" class="work">
+			<img ng-if="dude.location=='Work'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
 		</span>
 	</div>
 	<div class="col-md-4">
-		<h2>Mortal Peril</h2>
-		<span ng-repeat="dude in people[2]" class="peril">
-			<img ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+		<h2>Peril</h2>
+		<span ng-repeat="dude in firebase" class="peril">
+			<img ng-if="dude.location=='Peril'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
 		</span>
 	</div>
 </div>

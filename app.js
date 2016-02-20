@@ -17,7 +17,7 @@ weasleyClock.controller('HomeCtrl', [
   function($scope){
     this.message = "Hello form the home controllers";
 
-    this.firebase = [
+    $scope.firebase = [
 		{
 			id: 0,
 			name: 'Jon',
@@ -56,20 +56,28 @@ weasleyClock.controller('HomeCtrl', [
     },
 	];
 
-    var home = [];
-    var work = [];
-    var peril = [];
+    $scope.home = [];
+    $scope.work = [];
+    $scope.peril = [];
 
-    angular.forEach(this.firebase, function(dude) {
-        if(dude.location == 'Home') {
-          home.push(dude);
-        } else if(dude.location == 'Work') {
-          work.push(dude);
-        } else {
-          peril.push(dude);
-        }
-    });
-    $scope.people = [home, work, peril];
     $scope.me = 1;
+
+    $scope.myInfo = getMyInfo($scope.me);
+    // setMyInfo(me, newInfo);
+
+    function getMyInfo(me) {
+      var myInfo = {};
+      angular.forEach($scope.firebase, function(dude) {
+        if(dude.id == me) {
+          angular.copy(dude, myInfo);
+        }
+      });
+      return myInfo;
+    }
+
+    $scope.updateStatus = function() {
+      $scope.firebase['1'].location="Peril";
+      console.log($scope.firebase['1']);
+    };
   }
 ]);
