@@ -75,9 +75,22 @@ weasleyClock.controller('HomeCtrl', [
       return myInfo;
     }
 
-    $scope.updateStatus = function() {
-      $scope.firebase['1'].location="Peril";
-      console.log($scope.firebase['1']);
+    $scope.updateStatus = function(me) {
+      var newInfo = {
+        id: 1,
+        name: 'Mark',
+        location: 'Peril',
+        image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
+      }
+      $scope.setMyInfo(me, newInfo);
     };
+
+    $scope.setMyInfo = function(me, newInfo) {
+      angular.forEach($scope.firebase, function(dude) {
+        if(dude.id == me) {
+          angular.copy(newInfo, dude);
+        }
+      });
+    }
   }
 ]);
