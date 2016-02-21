@@ -85,7 +85,7 @@
 
 			function zoomToLocation(location) {
 				var pt = new Point(location.coords.longitude, location.coords.latitude);
-				var newlocation = 'unknown';
+				var newlocation = 'Peril';
 				console.log(pt);
 				console.log(pt.spatialReference);
 				map.centerAndZoom(pt, 12);
@@ -121,12 +121,9 @@
 		  		angular.forEach(locations, function (place) {
 		  			if(	parseFloat(place.topx) >= parseFloat(pt.x) && parseFloat(pt.x) >= parseFloat(place.bottomx) &&
 		  				parseFloat(place.topy) >= parseFloat(pt.y) && parseFloat(pt.y) >= parseFloat(place.bottomy) ) {
-		  				console.log('in ' + place.loc);
 		  				newlocation = place.type;
-		  			} else {
-		  				console.log('nope');
 		  			}
-		  		})
+		  		});
 
 		  		// send place.type to the firebase server to update
 		  		var myFirebaseRef = new Firebase("https://fiery-heat-1300.firebaseio.com/people/1");
@@ -161,35 +158,7 @@
 	<div class="clock">
 		<a href="#/">Home</a>
 		<div ng-view></div>
-		<div id='peopleDiv'></div>
 	</div>
-
-	<input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='locationInput' placeholder='Location'>
-    <input type='text' id='imageInput' placeholder='Image'>
-
-    <script>
-      var myDataRef = new Firebase('https://fiery-heat-1300.firebaseio.com/');
-      $('#imageInput').keypress(function (e) {
-        if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var location = $('#locationInput').val(); 
-          var image = $('#imageInput').val();
-          myDataRef.push({name: name, location: location, image: image});
-          $('#nameInput').val('');
-          $('#locationInput').val('');
-          $('#imageInput').val('');
-        }
-      });
-      myDataRef.on('child_added', function(snapshot) {
-        var person = snapshot.val();
-        displayPeople(person.name, person.location, person.image);
-      });
-      function displayPeople(name, location, image) {
-        $('<div/>').text(location).text(image).prepend($('<em/>').text(name+': ')).appendTo($('#peopleDiv'));
-        $('#peopleDiv')[0].scrollTop = $('#peopleDiv')[0].scrollHeight;
-      };
-    </script>
 
 </body>
 </html>
