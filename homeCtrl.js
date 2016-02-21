@@ -12,7 +12,7 @@ weasleyClock.controller('HomeCtrl', [
     // $scope.me = 1;
     $scope.me = $scope.user.id;
 
-    $scope.myInfo = getMyInfo($scope.me);
+    getMyInfo($scope.me);
     // setMyInfo(me, newInfo);
 
     function getMyInfo(me) {
@@ -20,20 +20,11 @@ weasleyClock.controller('HomeCtrl', [
       angular.forEach($scope.firebase, function(dude) {
         if(dude.id == me) {
           angular.copy(dude, myInfo);
+          $scope.user = dude;
+          User.user = dude;
         }
       });
-      return myInfo;
     }
-
-    $scope.updateStatus = function(me) {
-      var newInfo = {
-        id: 1,
-        name: 'Mark',
-        location: 'Peril',
-        image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
-      }
-      $scope.setMyInfo(me, newInfo);
-    };
 
     $scope.setMyInfo = function(me, newInfo) {
       angular.forEach($scope.firebase, function(dude) {

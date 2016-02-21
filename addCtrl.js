@@ -9,35 +9,29 @@ weasleyClock.controller('AddCtrl', [
 		$scope.user = User;
 		$scope.errorMessage = false;
 
+	    $scope.allLocations = [
+	      'Work',
+	      'Home',
+	      'School',
+	      'Peril'
+	    ];
+
 		var myFirebaseRef = new Firebase("https://fiery-heat-1300.firebaseio.com/people");
 	    var syncObject = $firebaseObject(myFirebaseRef);
 	    syncObject.$bindTo($scope, "firebase");
 
 		$scope.add = function(person) {
 
-			// $scope.personal = null;
-			// angular.forEach($scope.firebase, function(dude) {
-			// 	if(dude && dude.email && dude.email == person.email) {
-			// 		$scope.personal = dude;
-			// 		User.updateUser(dude);
-			// 	}
-			// });
-
-			// if($scope.personal !== null) {
-			// 	$location.path('/');
-			// 	$location.replace();
-			// } else {
-			// 	$scope.errorMessage = true;
-			// }
-	    console.log("here", person);
-	    if (person && person.hasOwnProperty('id')){
-	    	var p = {};
-	    	p[person['id']] = person;
-	   	 	myFirebaseRef.set(p);
+		    console.log("here", person);
+		    debugger
+		    if (person && person.hasOwnProperty('id')){
+		   	 	myFirebaseRef.push(person, success);
+		   	 	$location.path('/');
+		    }
 	    }
-	    
 
-
+	    function success() {
+			$location.path('/');
 	    }
 
 

@@ -10,6 +10,8 @@
 		ID: <input type="text" ng-model="person.id" style="color: black"/><br><br>
 		Image: <input type="text" ng-model="person.image" style="color: black"/><br><br>
 		Friend's Phone Number: <input type="text" ng-model="person.number" style="color: black"/><br><br>
+		Location: 
+		<select ng-options="location for location in allLocations" ng-model="person.location"></select>
 		<input type="submit" ng-click="add(person)" value="Submit" style="color: black"><br><br>
 	</form>
 </div>
