@@ -7,7 +7,11 @@
 
 	<div ng-if="user.hasOwnProperty('user')">
 
-		<h3><a ng-click="updateStatus(me)">Update Location</a></h3>
+		<h3>Update Location:</h3>
+		<a ng-click="updateStatus('Home')">Home</a>  |  
+		<a ng-click="updateStatus('Work')">Work</a>  |  
+		<a ng-click="updateStatus('Peril')">Peril</a>  |  
+		<a ng-click="updateStatus('School')">School</a>
 
 	 <div class="row">
 	    <div class="col-md-4 row-4">

@@ -30,12 +30,11 @@ weasleyClock.controller('HomeCtrl', [
 
     $scope.updateStatus = function(location) {
       console.log($scope.user.user);
-      $scope.setMyInfo('Peril');
+      $scope.setMyInfo(location);
     };
 
     $scope.setMyInfo = function(location) {
       angular.forEach($scope.firebase, function(dude) {
-        debugger
         if(dude && dude.hasOwnProperty('id')) {
           if(dude.id == $scope.user.user.id) {
             $scope.user.user.location = location;
