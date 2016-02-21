@@ -1,71 +1,75 @@
 <body class="claro">
   <div id="mapDiv" class="visibility: hidden"></div>
 </body>
-
- <div class="row">
-    <div class="col-md-4 row-4">
-      
-      <div class='panel panel-default first'>
-        <div class='panel-heading'>
-          <h2 class='panel-title'>Home</h2>
-        </div>
-        <div align=center class='panel-body minheight'>
-
-
-          <span ng-repeat="dude in firebase" class="home">
-            <img ng-if="dude.location=='Home'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
-          </span>
-        </div>
-      </div>
-    </div>  
+	<div ng-if="!user.hasOwnProperty('user')">
+		<h2>Please <a href="#/login">Login</a> to access your board.</h2>
+	</div>
+	<div ng-if="user.hasOwnProperty('user')">
+	 <div class="row">
+	    <div class="col-md-4 row-4">
+	      
+	      <div class='panel panel-default first'>
+	        <div class='panel-heading'>
+	          <h2 class='panel-title'>Home</h2>
+	        </div>
+	        <div align=center class='panel-body minheight'>
 
 
-  
-  <div class="col-md-4">
-    <div class='panel panel-default second'>
-      <div class='panel-heading'>
-        <h2 class='panel-title'>Work</h2>
-      </div>
-      <div align=center class='panel-body minheight'>
+	          <span ng-repeat="dude in firebase" class="home">
+	            <img ng-if="dude.location=='Home'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+	          </span>
+	        </div>
+	      </div>
+	    </div>  
 
 
-
-        <span ng-repeat="dude in firebase" class="work">
-          <img ng-if="dude.location=='Work'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
-        </span>
-      </div>
-    </div>  
-  </div>  
+	  
+	  <div class="col-md-4">
+	    <div class='panel panel-default second'>
+	      <div class='panel-heading'>
+	        <h2 class='panel-title'>Work</h2>
+	      </div>
+	      <div align=center class='panel-body minheight'>
 
 
 
-  <div class="col-md-4">
-    
-    <div class='panel panel-default third'>
-      <div class='panel-heading'>
-        <h2 class='panel-title'>Peril</h2>
-      </div>
-      <div align=center class='panel-body minheight'>
+	        <span ng-repeat="dude in firebase" class="work">
+	          <img ng-if="dude.location=='Work'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+	        </span>
+	      </div>
+	    </div>  
+	  </div>  
 
 
-        <span ng-repeat="dude in firebase" class="peril">
-          <img ng-if="dude.location=='Peril'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
-        </span>
-      </div>
-    </div>
-  </div>  
+
+	  <div class="col-md-4">
+	    
+	    <div class='panel panel-default third'>
+	      <div class='panel-heading'>
+	        <h2 class='panel-title'>Peril</h2>
+	      </div>
+	      <div align=center class='panel-body minheight'>
 
 
-  <div class="col-md-4"> 
-    <div class='panel panel-default fourth'>
-      <div class='panel-heading'>
-        <h2 class='panel-title'>School</h2>
-      </div>
-      <div align=center class='panel-body minheight'>
+	        <span ng-repeat="dude in firebase" class="peril">
+	          <img ng-if="dude.location=='Peril'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo"> 
+	        </span>
+	      </div>
+	    </div>
+	  </div>  
 
-      <span ng-repeat="dude in firebase" class="school">
-        <img ng-if="dude.location=='School'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo">
-      </span>
-      </div>
-    </div>
-  </div>
+
+	  <div class="col-md-4"> 
+	    <div class='panel panel-default fourth'>
+	      <div class='panel-heading'>
+	        <h2 class='panel-title'>School</h2>
+	      </div>
+	      <div align=center class='panel-body minheight'>
+
+	      <span ng-repeat="dude in firebase" class="school">
+	        <img ng-if="dude.location=='School'" ng-src="{{ dude.image }}" alt="..." class="img-circle photo">
+	      </span>
+	      </div>
+	    </div>
+	  </div>
+	</div>
