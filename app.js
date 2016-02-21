@@ -11,6 +11,11 @@ weasleyClock.config(['$routeProvider',
         controller : 'HomeCtrl',
         controllerAs : 'home'
       })
+      .when('/login', {
+        templateUrl : 'templates/login.html',
+        controller : 'LoginCtrl',
+        controllerAs : 'login'
+      })
       .otherwise('/');
   }
 ]);
