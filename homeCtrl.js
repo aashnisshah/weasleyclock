@@ -1,46 +1,47 @@
-weasleyClock.controller('HomeCtrl', [ 
+weasleyClock.controller('HomeCtrl', [
+  '$firebaseObject',
   '$scope',
-  function($scope){
+  function($firebaseObject, $scope){
     this.message = "Hello form the home controllers";
 
-    $scope.firebase = [
-		{
-			id: 0,
-			name: 'Jon',
-			location: 'Work',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
-		},
-		{
-			id: 1,
-			name: 'Mark',
-			location: 'Work',
-      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
-		},
-    {
-      id: 2,
-      name: 'Jon',
-      location: 'Work',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
-    },
-    {
-      id: 3,
-      name: 'Mark',
-      location: 'Work',
-      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
-    },
-    {
-      id: 4,
-      name: 'Jon',
-      location: 'Peril',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
-    },
-    {
-      id: 5,
-      name: 'Mark',
-      location: 'Peril',
-      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
-    },
-	];
+ //    $scope.firebase = [
+	// 	{
+	// 		id: 0,
+	// 		name: 'Jon',
+	// 		location: 'Work',
+ //      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
+	// 	},
+	// 	{
+	// 		id: 1,
+	// 		name: 'Mark',
+	// 		location: 'Work',
+ //      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
+	// 	},
+ //    {
+ //      id: 2,
+ //      name: 'Jon',
+ //      location: 'Work',
+ //      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
+ //    },
+ //    {
+ //      id: 3,
+ //      name: 'Mark',
+ //      location: 'Work',
+ //      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
+ //    },
+ //    {
+ //      id: 4,
+ //      name: 'Jon',
+ //      location: 'Peril',
+ //      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Ron_Weasley_poster.jpg'
+ //    },
+ //    {
+ //      id: 5,
+ //      name: 'Mark',
+ //      location: 'Peril',
+ //      image: 'http://vignette1.wikia.nocookie.net/villains/images/8/86/Draco_Malfoy_(Year_1).jpg/revision/latest?cb=20120806221046'
+ //    },
+	// ];
 
     $scope.home = [];
     $scope.work = [];
@@ -78,5 +79,9 @@ weasleyClock.controller('HomeCtrl', [
         }
       });
     }
+
+    var myFirebaseRef = new Firebase("https://fiery-heat-1300.firebaseio.com/people");
+    var syncObject = $firebaseObject(myFirebaseRef);
+    syncObject.$bindTo($scope, "firebase");
   }
 ]);
