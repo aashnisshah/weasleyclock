@@ -1,0 +1,16 @@
+<h1>Add User</h1>
+
+<div ng-controller='AddCtrl'>
+
+
+	<form novalidate>
+		Name: <input type="text" ng-model="person.name" style="color: black"/><br><br>
+		Email Address: <input type="text" ng-model="person.email" style="color: black"/><br><br>
+		Password: <input type="text" ng-model="person.password" style="color: black"/><br><br>
+		ID: <input type="text" ng-model="person.id" style="color: black"/><br><br>
+		Image: <input type="text" ng-model="person.image" style="color: black"/><br><br>
+		Friend's Phone Number: <input type="text" ng-model="person.number" style="color: black"/><br><br>
+		<input type="submit" ng-click="add(person)" value="Submit" style="color: black"><br><br>
+	</form>
+</div>
+
