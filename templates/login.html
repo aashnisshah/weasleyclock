@@ -1,9 +1,16 @@
 <h1>Login</h1>
 
 <div ng-controller='LoginCtrl'>
+
+	<div ng-if="errorMessage == true">
+		There was an error logging in. Please try again.
+	</div>
+
 	<form novalidate>
 		Email Address: <input type="text" ng-model="person.email" class="color: black"/><br>
 		Password: <input type="text" ng-model="person.password" /><br>
 		<input type="submit" ng-click="login(person)" value="Submit"><br><br>
 	</form>
 </div>
+
+

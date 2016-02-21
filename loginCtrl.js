@@ -5,6 +5,7 @@ weasleyClock.controller('LoginCtrl', [
 	function($firebaseObject, $location, $scope){
 	  
 		$scope.person = {};
+		$scope.errorMessage = false;
 
 		var myFirebaseRef = new Firebase("https://fiery-heat-1300.firebaseio.com/people");
 	    var syncObject = $firebaseObject(myFirebaseRef);
@@ -22,6 +23,8 @@ weasleyClock.controller('LoginCtrl', [
 			if($scope.personal !== null) {
 				$location.path('/');
 				$location.replace();
+			} else {
+				$scope.errorMessage = true;
 			}
 	    }
 
