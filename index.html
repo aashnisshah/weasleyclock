@@ -18,6 +18,8 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
 
 	<!-- ArcGIS -->
 	<link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
@@ -110,7 +112,6 @@
 		  		];
 
 		  		angular.forEach(locations, function (place) {
-		  			debugger
 		  			if(	parseFloat(place.topx) >= parseFloat(pt.x) && parseFloat(pt.x) >= parseFloat(place.bottomx) &&
 		  				parseFloat(place.topy) >= parseFloat(pt.y) && parseFloat(pt.y) >= parseFloat(place.bottomy) ) {
 		  				console.log('in ' + place.loc);
@@ -121,6 +122,27 @@
 		  		})
 
 		  		// send place.type to the firebase server to update
+		  		var myFirebaseRef = new Firebase("https://fiery-heat-1300.firebaseio.com/people/1");
+
+		  		// myFirebaseRef.set({
+		  		// 	id: 1,
+		  		// 	name: 'John',
+		  		// 	location: 'Work',
+		  		// 	image: 'https://pbs.twimg.com/profile_images/1501070030/John_2011_1_500x500.png'
+		  		// });
+
+		  		myFirebaseRef.update({
+		  			location: newlocation
+		  		});
+
+
+		  		// var userRef = myFirebaseRef.child("1");
+		  		// // var updateRef = userRef.child('1');
+		  		// userRef.update({
+		  		// 	'nickname': 'Hello'
+		  		// });
+
+				
 			}
 
 		});
