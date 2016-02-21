@@ -6,13 +6,20 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js"></script>
 
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+	<!-- Firebase -->
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="homeCtrl.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<!--Bootstrap-->
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- Optional theme -->
@@ -28,7 +35,35 @@
 	<div class="clock">
 		<a href="#/">Home</a>
 		<div ng-view></div>
+		<div id='peopleDiv'></div>
 	</div>
+
+	<input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='locationInput' placeholder='Location'>
+    <input type='text' id='imageInput' placeholder='Image'>
+
+    <script>
+      var myDataRef = new Firebase('https://fiery-heat-1300.firebaseio.com/');
+      $('#imageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var location = $('#locationInput').val(); 
+          var image = $('#imageInput').val();
+          myDataRef.push({name: name, location: location, image: image});
+          $('#nameInput').val('');
+          $('#locationInput').val('');
+          $('#imageInput').val('');
+        }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+        var person = snapshot.val();
+        displayPeople(person.name, person.location, person.image);
+      });
+      function displayPeople(name, location, image) {
+        $('<div/>').text(location).text(image).prepend($('<em/>').text(name+': ')).appendTo($('#peopleDiv'));
+        $('#peopleDiv')[0].scrollTop = $('#peopleDiv')[0].scrollHeight;
+      };
+    </script>
 
 </body>
 </html>
