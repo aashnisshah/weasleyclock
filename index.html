@@ -169,6 +169,50 @@
 		  			location: newlocation
 		  		});
 
+		  		var person = {
+		  			name: 'John',
+		  			phone: '4167211264'
+		  		}
+
+		  		var smsQueue = new Firebase('https://fiery-heat-1300.firebaseio.com/sms/' + person.phone)
+
+		  		myFirebaseRef.set({
+		  			name: person.name,
+		  			phone: person.phone
+		  		});
+
+		  		// Load the twilio module
+				var twilio = require('twilio');
+				 
+				// Create a new REST API client to make authenticated requests against the
+				// twilio back end
+				var client = new twilio.RestClient('AC7df3d1352b9d441ea2850dccba82d699', '8c3bdd78fba5268c079bb87394c1a13f');
+				 
+				// Pass in parameters to the REST API using an object literal notation. The
+				// REST client will handle authentication and response serialzation for you.
+				client.sms.messages.create({
+				    to:'+14167211264',
+				    from:'+16473605406',
+				    body:'ahoy hoy! Testing Twilio and node.js'
+				}, function(error, message) {
+				    // The HTTP request to Twilio will run asynchronously. This callback
+				    // function will be called when a response is received from Twilio
+				    // The "error" variable will contain error information, if any.
+				    // If the request was successful, this value will be "falsy"
+				    if (!error) {
+				        // The second argument to the callback will contain the information
+				        // sent back by Twilio for the request. In this case, it is the
+				        // information about the text messsage you just sent:
+				        console.log('Success! The SID for this SMS message is:');
+				        console.log(message.sid);
+				 
+				        console.log('Message sent on:');
+				        console.log(message.dateCreated);
+				    } else {
+				        console.log('Oops! There was an error.');
+				    }
+				});
+
 
 		  		// var userRef = myFirebaseRef.child("1");
 		  		// // var updateRef = userRef.child('1');
@@ -186,7 +230,7 @@
 
  
             <div class="inner">
-              <h3 class="masthead-brand" >Weasley's Wonders</h3>
+              <h3 class="masthead-brand" >Magic Tracker</h3>
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#/">Home</a></li>
@@ -199,7 +243,7 @@
             </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Magic Tracker</h1>
+            <h1 class="cover-heading">Aparecium</h1>
             <p class="lead">Use the magic in the world to track the ones you love.</p>
             
           </div>

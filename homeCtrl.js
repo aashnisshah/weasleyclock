@@ -18,18 +18,29 @@ weasleyClock.controller('HomeCtrl', [
     function getMyInfo(me) {
       var myInfo = {};
       angular.forEach($scope.firebase, function(dude) {
-        if(dude.id == me) {
-          angular.copy(dude, myInfo);
-          $scope.user = dude;
-          User.user = dude;
+        if(dude && dude.hasOwnProperty('id')) {
+          if(dude.id == me) {
+            angular.copy(dude, myInfo);
+            $scope.user = dude;
+            User.user = dude;
+          }
         }
       });
     }
 
-    $scope.setMyInfo = function(me, newInfo) {
+    $scope.updateStatus = function(location) {
+      console.log($scope.user.user);
+      $scope.setMyInfo('Peril');
+    };
+
+    $scope.setMyInfo = function(location) {
       angular.forEach($scope.firebase, function(dude) {
-        if(dude.id == me) {
-          angular.copy(newInfo, dude);
+        debugger
+        if(dude && dude.hasOwnProperty('id')) {
+          if(dude.id == $scope.user.user.id) {
+            $scope.user.user.location = location;
+            angular.copy($scope.user.user, dude);
+          }
         }
       });
     }

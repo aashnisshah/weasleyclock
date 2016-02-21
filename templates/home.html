@@ -4,7 +4,11 @@
 	<div ng-if="!user.hasOwnProperty('user')">
 		<h2>Please <a href="#/login">Login</a> to access your board.</h2>
 	</div>
+
 	<div ng-if="user.hasOwnProperty('user')">
+
+		<h3><a ng-click="updateStatus(me)">Update Location</a></h3>
+
 	 <div class="row">
 	    <div class="col-md-4 row-4">
 	      
