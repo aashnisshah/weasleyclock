@@ -1,10 +1,16 @@
 weasleyClock.controller('HomeCtrl', [
   '$firebaseObject',
   '$scope',
-  function($firebaseObject, $scope){
+  'User',
+  function($firebaseObject, $scope, User){
     this.message = "Hello form the home controllers";
-
-    $scope.me = $scope.personal.id || 1;
+    $scope.user = User;
+    // debugger
+    console.log(User.getUser);
+    console.log($scope.user);
+    // $scope.me = $scope.personal.id || 1;
+    // $scope.me = 1;
+    $scope.me = $scope.user.id;
 
     $scope.myInfo = getMyInfo($scope.me);
     // setMyInfo(me, newInfo);
